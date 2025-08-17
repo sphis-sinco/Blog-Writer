@@ -2,7 +2,7 @@ import json, sys
 from os import listdir
 from os.path import isfile, join
 
-iteration = 6
+iteration = 7
 
 folderMode = False
 folder = ''
@@ -54,21 +54,21 @@ for data in fileJsons:
                         keepDate = False
       
         if keepDate and 'date' in data:  
-                text += ' ('+data['date']+')\n'
+                text += ' ('+data['date']+')'
         
-        text += data['content'] + '\n\n'
+        text += '\n' + data['content'] + '\n\n'
         
         if 'headerType' in data:
                 if data['headerType'] == 2:
-                        header += ('## ')
+                        header = ('## ')
                 elif data['headerType'] == 3:
-                        header += ('### ')
+                        header = ('### ')
                 elif data['headerType'] == 4:
-                        header += ('#### ')
+                        header = ('#### ')
                 elif data['headerType'] == 5:
-                        header += ('##### ')
+                        header = ('##### ')
                 elif data['headerType'] == 6:
-                        header += ('###### ')
+                        header = ('###### ')
         
         finalJson += (header+text)
 
