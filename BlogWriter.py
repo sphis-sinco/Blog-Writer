@@ -23,7 +23,7 @@ else:
                 fileNames = sys.argv[3].split(',')
 
 if folderMode:
-        fileNames = [f for f in listdir(folder) if isfile(join(folder, f))]
+        fileNames = [f for f in listdir(folder) if isfile(join(folder, f)) and f.endswith('.json')]
 
 for file in fileNames:
         fileNames.remove(file)
