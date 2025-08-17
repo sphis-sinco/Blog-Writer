@@ -35,14 +35,14 @@ if folder.__len__() > 0:
 for fileName in fileNames:
         filePaths.append(folder + fileName.removesuffix('.json') + '.json')
 
+filePaths.sort()
+
 for file in filePaths:
         jsonFile = open(file, 'r')
         jsonData = json.load(jsonFile)
         fileJsons.append(jsonData)
 
 finalJson = ''    
-
-fileJsons.reverse()
 
 for data in fileJsons:
         finalJson += ('# '+data['title']+' ('+data['date']+')\n'+data['content'] + '\n\n')
