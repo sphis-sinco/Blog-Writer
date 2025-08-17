@@ -29,9 +29,6 @@ for file in fileNames:
         fileNames.remove(file)
         fileNames.append(file.removesuffix('.json'))
 
-print(fileNames)
-sys.exit()
-
 if folder.__len__() > 0:
         folder += '/'
 
