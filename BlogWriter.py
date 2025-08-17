@@ -2,7 +2,7 @@ import json, sys
 from os import listdir
 from os.path import isfile, join
 
-iteration = 5
+iteration = 6
 
 folderMode = False
 folder = ''
@@ -45,8 +45,18 @@ for file in filePaths:
 finalJson = ''    
 
 for data in fileJsons:
-        text = data['title']+' ('+data['date']+')\n'+data['content'] + '\n\n'
+        text = data['title']
         header = '# '
+        
+        keepDate = True
+        if 'hideDate' in data:
+                if data['hideDate'] == True:
+                        keepDate = False
+      
+        if keepDate and 'date' in data:  
+                text += ' ('+data['date']+')\n'
+        
+        text += data['content'] + '\n\n'
         
         if 'headerType' in data:
                 if data['headerType'] == 2:
