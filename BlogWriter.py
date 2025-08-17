@@ -33,7 +33,7 @@ if folder.__len__() > 0:
         folder += '/'
 
 for fileName in fileNames:
-        filePaths.append(folder + fileName + '.json')
+        filePaths.append(folder + fileName.removesuffix('.json') + '.json')
 
 for file in filePaths:
         jsonFile = open(file, 'r')
