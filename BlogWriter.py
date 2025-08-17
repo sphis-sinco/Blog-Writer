@@ -1,7 +1,10 @@
 import json, sys
+from os import listdir
+from os.path import isfile, join
 
-iteration = 3
+iteration = 4
 
+folderMode = False
 folder = ''
 
 fileNames = []
@@ -9,12 +12,25 @@ filePaths = []
 fileJsons = []
 
 if sys.argv.__len__() < 2:
+        folderMode = input('Folder mode? (Y/N)\n>').lower() == 'y'
         folder = input('What folder are these files in? (leave blank if no folder)\n> ')
-        fileNames = input('Give filenames (Seperated by comma, exclude extension)\n> ').split(',')
+        if not folderMode:
+                fileNames = input('Give filenames (Seperated by comma, exclude extension)\n> ').split(',')
 else:
-        folder = sys.argv[1]
-        fileNames = sys.argv[2].split(',')
+        folderMode = sys.argv[1].lower() == 'y'
+        folder = sys.argv[2]
+        if not folderMode:
+                fileNames = sys.argv[3].split(',')
 
+if folderMode:
+        fileNames = [f for f in listdir(folder) if isfile(join(folder, f))]
+
+for file in fileNames:
+        fileNames.remove(file)
+        fileNames.append(file.removesuffix('.json'))
+
+print(fileNames)
+sys.exit()
 
 if folder.__len__() > 0:
         folder += '/'
